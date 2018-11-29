@@ -54,6 +54,20 @@ const splitNumbers = function(stringOfnumbers) {
  return list.map( x => +x );
 }
 
+const joinByPipe = function(list) {
+ let joinedList = '|' + list.join('|') + '|';
+ return joinedList;
+}
+
+const repeat = function(string, times) {
+ return new Array(times).fill(string).join("");
+}
+
+const justifier = function(width, text) {
+ let spaces = width - text.length - 1;
+ return " " + text + repeat(' ',spaces);
+}
+
 module.exports = { splitNumbers,
                    isIncludes, 
                    increamentList, 
@@ -63,4 +77,7 @@ module.exports = { splitNumbers,
                    concat, 
                    convertToMatrix, 
                    convertToLinear,
-                   intersection };
+                   intersection,
+                   joinByPipe,
+                   repeat,
+                   justifier };

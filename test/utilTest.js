@@ -8,7 +8,10 @@ const { increamentList,
         createUniqueList,    
         joinWithComa,
         isIncludes,
-        splitNumbers } = require ("../src/util.js");
+        splitNumbers,
+        joinByPipe,
+        repeat,
+        justifier } = require ("../src/util.js");
 
 describe( "createUniqueList" , function() {
   it( "should return empty list with size is zero", function() {
@@ -83,3 +86,21 @@ describe('splitNumbers', function() {
  });
 })
 
+describe('joinByPipe', function() {
+  it('should return the string of given list joined by pipe', function() {
+    assert.deepEqual(joinByPipe([1,2,3]),'|1|2|3|');
+  });
+})
+
+describe('repeat', function() {
+  it('should return string of given character of has length given times', function() {
+    assert.deepEqual(repeat('-',4),'----');
+  });
+})
+
+describe('justifier', function() {
+  it('should return left justified text as per given width', function() {
+    assert.deepEqual(justifier(5,'100'),' 100 ');
+    assert.deepEqual(justifier(6,'11'),' 11   ');
+  });
+})
