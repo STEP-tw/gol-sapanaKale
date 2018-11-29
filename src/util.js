@@ -1,7 +1,7 @@
 const cartesionProduct = function(set1, set2) {
   let result = [];
-  for ( valueOfSet1 of set1 ) {
-    for ( valueOfSet2 of set2 ) {
+  for ( let valueOfSet1 of set1 ) {
+    for ( let valueOfSet2 of set2 ) {
       result.push([ valueOfSet1, valueOfSet2 ]);
     }
   }
