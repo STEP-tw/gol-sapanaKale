@@ -7,7 +7,7 @@ const { splitNumbers,
         createUniqueList,
         concat,
         cartesionProduct,
-        isIncludes } = require("../src/util.js");
+        isIncludes } = require("./util.js");
 
 const createBoard = function( bound ) {
   let x = bound.topLeft[0], xPrime = bound.bottomRight[0];
