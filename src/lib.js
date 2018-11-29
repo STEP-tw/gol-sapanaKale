@@ -85,6 +85,23 @@ const extractGeneration = function(aliveCells) {
   return aliveCells.map( splitNumbers );
 }
 
+const calculateWidth = function(world) {
+ let lastRow = world[ world.length - 1 ];
+ let row = lastRow.length;
+ let column = lastRow[ row - 1 ].length + 2;
+ return {row : row, column : column};
+}
+
+const createGrid = function(list, border) {
+ let grid = [];
+ for(let item of list) {
+   grid.push(border);
+   grid.push(item);
+ }
+ grid.push(border);
+ return grid.join('\n');
+}
+
 module.exports = {createBoard, 
                   addRows,
                   declareAlive, 
@@ -95,4 +112,6 @@ module.exports = {createBoard,
                   isAlive,
                   extractParameters,
                   extractGeneration,
-                  extractBounds };
+                  extractBounds,
+                  calculateWidth,
+                  createGrid };

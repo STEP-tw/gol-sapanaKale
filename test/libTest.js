@@ -9,7 +9,9 @@ const { extractParameters,
         declareAlive,
         allPossibleNeighbours,
         extractNeighbours,
-        isAlive } = require ("../src/lib.js");
+        isAlive,
+        calculateWidth,
+        createGrid } = require ("../src/lib.js");
 
 describe( "updateWorld" , function() {
   it( "should update state of provided live cells in given world" , function() {
@@ -95,5 +97,20 @@ describe('extractBounds', function() {
 describe('extractGeneration', function() {
   it('should return array of aliveCells', function() {
     assert.deepEqual(extractGeneration("LIVE=0,0 1,1 3,3"), [ [0,0], [1,1], [3,3] ]);
+  });
+})
+
+describe('calculateWidth', function() {
+ it('should return the width of row and column', function() {
+   let world = [['0,0', '0,1', '0,2'], ['1,0', '1,1', '1,2'], ['2,0', '2,1', '2,2']];
+   assert.deepEqual(calculateWidth(world), {row : 3, column : 5});
+   world = [['0,0', '0,1'], ['1,0', '1,1'], ['2,0', '2,1']];
+   assert.deepEqual(calculateWidth(world), {row : 2, column : 5});
+ });
+})
+
+describe('createGrid', function() {
+  it('should return grid of given list and border', function() {
+    assert.deepEqual(createGrid(['|1|','|2|'],'+-+'),'+-+\n|1|\n+-+\n|2|\n+-+');
   });
 })
