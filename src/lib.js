@@ -28,6 +28,7 @@ const addRows = function(y, yPrime, matrix, rowNumber) {
 
 const updateWorld = function (world, liveCells) {
   let width = world[0].length;
+  liveCells = liveCells.map(x => x.toString());
   world = liveCells.reduce( declareAlive, world );
   world = convertToLinear( world ).map( declareDead );
   return convertToMatrix( width, world );

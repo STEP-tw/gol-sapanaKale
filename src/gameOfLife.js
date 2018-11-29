@@ -1,5 +1,5 @@
 const { convertToLinear, splitNumbers } = require('./util.js'); 
-const { isAlive, createBoard } = require('./lib.js'); 
+const { isAlive, createBoard, updateWorld, createWorld } = require('./lib.js'); 
 
 const nextGeneration = function( currGeneration, bounds ) {
   let world = convertToLinear( createBoard( bounds ) );
@@ -14,5 +14,16 @@ const nthGeneration = function(bounds, currGeneration, iteration) {
   return nthGeneration(bounds, nextGeneration(currGeneration, bounds), --iteration);
 }
 
+const generateNthGeneration = function(parameters) {
+  let { bounds, currGeneration, N } = parameters;
+  let aliveCells = nthGeneration(bounds, currGeneration, N);
+  let world = createBoard( bounds );
+  console.log(world);
+  console.log(aliveCells);
+  world = updateWorld(world, aliveCells);
+  return createWorld(world);
+}
+
 module.exports = { nextGeneration,
-                   nthGeneration };
+                   nthGeneration,
+                   generateNthGeneration };
