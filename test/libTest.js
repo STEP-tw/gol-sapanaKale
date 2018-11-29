@@ -1,5 +1,8 @@
 const assert = require ("assert");
-const { addRows,
+const { extractParameters,
+        extractBounds,
+        extractGeneration,
+        addRows,
         updateWorld,
         createBoard,
         declareDead,
@@ -73,3 +76,24 @@ describe('isAlive', function() {
   })
 })
 
+describe('extractParameters', function() {
+  it('should return a object of parameters from user input', function() {
+    let userInput = [,,"LT=0,0", "RB=3,3", "LIVE=0,0 1,1 3,3", "N=1"];
+    let parameters = {bounds: {topLeft: [0,0], bottomRight: [3,3]}, 
+                      currGeneration:[ [0,0], [1,1], [3,3] ],
+                      N:1};
+    assert.deepEqual(extractParameters(userInput),parameters);
+  });
+})
+
+describe('extractBounds', function() {
+  it('should return object of topLeft, bottomRight co-ordinates', function() {
+    assert.deepEqual(extractBounds("LT=0,0", "RB=3,3"), {topLeft: [0,0], bottomRight: [3,3]});
+  });
+})
+
+describe('extractGeneration', function() {
+  it('should return array of aliveCells', function() {
+    assert.deepEqual(extractGeneration("LIVE=0,0 1,1 3,3"), [ [0,0], [1,1], [3,3] ]);
+  });
+})

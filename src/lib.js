@@ -67,6 +67,24 @@ const isAlive = function ( liveCells, bound, cell ) {
   return willRemainAlive || willAlive;
 }
 
+const extractParameters = function(details) {
+  let bounds = extractBounds(details[2], details[3]);
+  let currGeneration = extractGeneration( details[4] );
+  let N = +details[5].split('=')[1];
+  return { bounds : bounds, currGeneration : currGeneration, N : N };
+}
+
+const extractBounds = function(topLeft, bottomRight) {
+  topLeft = splitNumbers( topLeft.split('=')[1] );
+  bottomRight = splitNumbers( bottomRight.split('=')[1] );
+  return { topLeft : topLeft, bottomRight : bottomRight };
+}
+
+const extractGeneration = function(aliveCells) {
+  aliveCells = aliveCells.split('=')[1].split(' ');
+  return aliveCells.map( splitNumbers );
+}
+
 module.exports = {createBoard, 
                   addRows,
                   declareAlive, 
@@ -74,4 +92,8 @@ module.exports = {createBoard,
                   updateWorld, 
                   allPossibleNeighbours,
                   extractNeighbours,
-                  isAlive };
+                  isAlive,
+                  extractParameters,
+                  extractGeneration,
+                  extractBounds };
+
