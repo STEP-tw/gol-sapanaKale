@@ -1,10 +1,13 @@
-const { splitNumbers,
+const { repeat,
+        splitNumbers,
         intersection,
         increamentList,
         joinWithComa,
         convertToLinear,
         convertToMatrix,
         createUniqueList,
+        justifier,
+        joinByPipe,
         concat,
         cartesionProduct,
         isIncludes } = require("./util.js");
@@ -89,7 +92,7 @@ const calculateWidth = function(world) {
  let lastRow = world[ world.length - 1 ];
  let row = lastRow.length;
  let column = lastRow[ row - 1 ].length + 2;
- return {row : row, column : column};
+ return {row : +row, column : +column};
 }
 
 const createGrid = function(list, border) {
@@ -100,6 +103,22 @@ const createGrid = function(list, border) {
  }
  grid.push(border);
  return grid.join('\n');
+}
+
+const createBorder = function(rowWidth, columnWidth) {
+ let border = new Array(rowWidth).fill(columnWidth);
+ const repeatDash = repeat.bind(null, '-');
+ border = border.map(repeatDash).join('+');
+ border = '+' + border + '+';
+ return border;
+}
+
+const createWorld = function (world) {
+ let width = calculateWidth(world);
+ let border = createBorder(width.row, width.column);
+ let justify = justifier.bind(null, width.column);
+ let board = world.map( list => joinByPipe( list.map(justify) ) );
+ return createGrid(board, border);
 }
 
 module.exports = {createBoard, 
@@ -114,4 +133,6 @@ module.exports = {createBoard,
                   extractGeneration,
                   extractBounds,
                   calculateWidth,
-                  createGrid };
+                  createGrid,
+                  createWorld,
+                  createBorder };

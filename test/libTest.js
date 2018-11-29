@@ -1,5 +1,6 @@
 const assert = require ("assert");
-const { extractParameters,
+const { createWorld,
+        extractParameters,
         extractBounds,
         extractGeneration,
         addRows,
@@ -11,7 +12,8 @@ const { extractParameters,
         extractNeighbours,
         isAlive,
         calculateWidth,
-        createGrid } = require ("../src/lib.js");
+        createGrid,
+        createBorder } = require ("../src/lib.js");
 
 describe( "updateWorld" , function() {
   it( "should update state of provided live cells in given world" , function() {
@@ -112,5 +114,19 @@ describe('calculateWidth', function() {
 describe('createGrid', function() {
   it('should return grid of given list and border', function() {
     assert.deepEqual(createGrid(['|1|','|2|'],'+-+'),'+-+\n|1|\n+-+\n|2|\n+-+');
+  });
+})
+
+describe('createBorder', function() {
+ it('should create border for row according to the row and column width', function() {
+   assert.deepEqual(createBorder(2,3), '+---+---+' );
+   assert.deepEqual(createBorder(3,5), '+-----+-----+-----+' );
+ });
+})
+
+describe('createWorld', function() {
+  it('should return the grid form of provided world ', function() {
+    assert.deepEqual(createWorld([[' ', ' '], ['L', ' ']]),'+---+---+\n|   |   |\n+---+---+\n| L |   |\n+---+---+');
+    assert.deepEqual(createWorld([[' ', ' ', 'L'], ['L', ' ', ' ']]),'+---+---+---+\n|   |   | L |\n+---+---+---+\n| L |   |   |\n+---+---+---+');
   });
 })
