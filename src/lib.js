@@ -96,4 +96,3 @@ module.exports = {createBoard,
                   extractParameters,
                   extractGeneration,
                   extractBounds };
-

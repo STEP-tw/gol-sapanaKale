@@ -1,5 +1,6 @@
 const assert = require('assert');
-const {nextGeneration} = require('../src/gameOfLife.js');
+const {nextGeneration,
+       nthGeneration } = require('../src/gameOfLife.js');
 
 const contains = (list,element) => list.some(e=>e[0]===element[0] && e[1]===element[1]);
 const isSame = (actualList,expectedList) => actualList.every(contains.bind(null,expectedList));
@@ -31,3 +32,16 @@ describe('nextGeneration',() => {
     assert.ok(isSameArity(actualNextGen,expectedNextGen));
   });
 });
+
+describe('nthGeneration', function() {
+  it('should return the world state at provided generation', function() {
+    let currGeneration = [[0, 0], [1, 0], [1, 1]];
+    let bounds = {topLeft : [0,0], bottomRight : [1,1]};
+    assert.deepEqual(nthGeneration(bounds, currGeneration, 1), [[0,0], [0,1], [1,0], [1,1]]);
+   
+    currGeneration = [[1,1], [1,2], [2,1], [2,2], [2,3]];
+    bounds = {topLeft : [1,1], bottomRight : [3,3]}
+    assert.deepEqual(nthGeneration(bounds, currGeneration, 3), [[2,2], [3,2]]);
+    assert.deepEqual(nthGeneration(bounds, currGeneration, 4), []);
+  });
+})

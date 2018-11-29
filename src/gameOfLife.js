@@ -7,4 +7,12 @@ const nextGeneration = function( currGeneration, bounds ) {
   return world.filter( isCellAlive ).map( splitNumbers );
 }
 
-module.exports = { nextGeneration };
+const nthGeneration = function(bounds, currGeneration, iteration) {
+  if(iteration == 0) {
+    return currGeneration;
+  }
+  return nthGeneration(bounds, nextGeneration(currGeneration, bounds), --iteration);
+}
+
+module.exports = { nextGeneration,
+                   nthGeneration };
