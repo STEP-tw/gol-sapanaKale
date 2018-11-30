@@ -58,9 +58,19 @@ describe('nthGeneration', function() {
 describe('generateNthGeneration', function() {
   it('should return the grid form of provided world ', function() {
     let parameters = {bounds: {topLeft: [0,0], bottomRight: [1,1]}, currGeneration:[ [1,0] ],N:0};
-    assert.deepEqual(generateNthGeneration(parameters),'+---+---+\n|   |   |\n+---+---+\n| L |   |\n+---+---+');
+    let expectedOutput = '+---+---+\n';
+    expectedOutput +=    '|   |   |\n';
+    expectedOutput +=    '+---+---+\n';
+    expectedOutput +=    '| @ |   |\n';
+    expectedOutput +=    '+---+---+';
+    assert.deepEqual(generateNthGeneration(parameters),expectedOutput);
     parameters = {bounds: {topLeft: [0,0], bottomRight: [1,2]}, currGeneration:[ [0,2], [1,0] ],N:3};
-    assert.deepEqual(generateNthGeneration(parameters),'+---+---+---+\n|   |   |   |\n+---+---+---+\n|   |   |   |\n+---+---+---+');
+    expectedOutput =  '+---+---+---+\n';
+    expectedOutput += '|   |   |   |\n';
+    expectedOutput += '+---+---+---+\n';
+    expectedOutput += '|   |   |   |\n';
+    expectedOutput += '+---+---+---+';
+    assert.deepEqual(generateNthGeneration(parameters),expectedOutput);
   });
 })
 

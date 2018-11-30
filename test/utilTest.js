@@ -72,18 +72,18 @@ describe('isIncludes', function() {
 })
 
 describe('intersection', function() {
- it('should return intersection of the given sets.', function() {
-   assert.deepEqual(intersection([1, 2, 3, 4], [2, 3]), [2, 3] );
-   assert.deepEqual(intersection(['1,2', '2,3', '4,5'], ['1,3']), [] );
-   assert.deepEqual(intersection(['1,2', '2,3', '4,5'], ['1,2', '1,4']), ['1,2'] );
- });
+  it('should return intersection of the given sets.', function() {
+    assert.deepEqual(intersection([1, 2, 3, 4], [2, 3]), [2, 3] );
+    assert.deepEqual(intersection(['1,2', '2,3', '4,5'], ['1,3']), [] );
+    assert.deepEqual(intersection(['1,2', '2,3', '4,5'], ['1,2', '1,4']), ['1,2'] );
+  });
 })
 
 describe('splitNumbers', function() {
- it('should return splitNumbers of the given sets.', function() {
-   assert.deepEqual(splitNumbers('1,2'), [1, 2] );
-   assert.deepEqual(splitNumbers('0,0'), [0, 0]);
- });
+  it('should return splitNumbers of the given sets.', function() {
+    assert.deepEqual(splitNumbers('1,2'), [1, 2] );
+    assert.deepEqual(splitNumbers('0,0'), [0, 0]);
+  });
 })
 
 describe('joinByPipe', function() {

@@ -36,11 +36,11 @@ const isIncludes = function (source, element) {
 }
 
 const increamentList = function(begin, end) {
- let size = end - begin + 1;
- if(size < 0) {
-   return [];
- }
- return new Array( size ).fill( begin ).map( (x,i) => x+i );
+  let size = end - begin + 1;
+  if(size < 0) {
+    return [];
+  }
+  return new Array( size ).fill( begin ).map( (x,i) => x+i );
 }
 
 const intersection = function (set1, set2) {
@@ -49,23 +49,23 @@ const intersection = function (set1, set2) {
 }
 
 const splitNumbers = function(stringOfnumbers) {
- let list = [];
- list = stringOfnumbers.split(',');
- return list.map( x => +x );
+  let list = [];
+  list = stringOfnumbers.split(',');
+  return list.map( x => +x );
 }
 
 const joinByPipe = function(list) {
- let joinedList = '|' + list.join('|') + '|';
- return joinedList;
+  let joinedList = '|' + list.join('|') + '|';
+  return joinedList;
 }
 
 const repeat = function(string, times) {
- return new Array(times).fill(string).join("");
+  return new Array(times).fill(string).join("");
 }
 
 const justifier = function(width, text) {
- let spaces = width - text.length - 1;
- return " " + text + repeat(' ',spaces);
+  let spaces = width - text.length - 1;
+  return " " + text + repeat(' ',spaces);
 }
 
 module.exports = { splitNumbers,

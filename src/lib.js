@@ -20,16 +20,17 @@ const createBoard = function( bound ) {
 }
 
 const addRows = function(y, yPrime, matrix, rowNumber) {
- let joinIndexes = joinWithComa.bind(null, rowNumber);
- let row = increamentList(y, yPrime).map( joinIndexes );
- matrix.push( row );
- return matrix;
+  let joinIndexes = joinWithComa.bind(null, rowNumber);
+  let row = increamentList(y, yPrime).map( joinIndexes );
+  matrix.push( row );
+  return matrix;
 }
 
 const updateWorld = function (world, liveCells) {
   let width = world[0].length;
-  liveCells = liveCells.map(x => x.toString());
-  world = liveCells.reduce( declareAlive, world );
+  let validLiveCells = liveCells.map(x => x.toString());
+  validLiveCells = intersection( convertToLinear( world ), validLiveCells);
+  world = validLiveCells.reduce( declareAlive, world );
   world = convertToLinear( world ).map( declareDead );
   return convertToMatrix( width, world );
 }
@@ -37,12 +38,12 @@ const updateWorld = function (world, liveCells) {
 const declareAlive = function (world, liveCells) {
   let row = liveCells.split(',')[0];
   let column = liveCells.split(',')[1];
-  world[ row ][ column ] = 'L';
+  world[ row ][ column ] = '@';
   return world;
 }
 
 const declareDead  = function (element) {
-  return (element == 'L') ? element : ' ';
+  return (element == '@') ? element : ' ';
 }
 
 const allPossibleNeighbours = function (cell) {
@@ -90,35 +91,35 @@ const extractGeneration = function(aliveCells) {
 }
 
 const calculateWidth = function(world) {
- let lastRow = world[ world.length - 1 ];
- let row = lastRow.length;
- let column = lastRow[ row - 1 ].length + 2;
- return {row : +row, column : +column};
+  let lastRow = world[ world.length - 1 ];
+  let row = lastRow.length;
+  let column = lastRow[ row - 1 ].length + 2;
+  return {row : +row, column : +column};
 }
 
 const createGrid = function(list, border) {
- let grid = [];
- for(let item of list) {
-   grid.push(border);
-   grid.push(item);
- }
- grid.push(border);
- return grid.join('\n');
+  let grid = [];
+  for(let item of list) {
+    grid.push(border);
+    grid.push(item);
+  }
+  grid.push(border);
+  return grid.join('\n');
 }
 
 const createBorder = function(rowWidth, columnWidth) {
- let border = new Array(rowWidth).fill(columnWidth);
- const repeatDash = repeat.bind(null, '-');
- border = border.map(repeatDash).join('+');
- border = '+' + border + '+';
- return border;
+  let border = new Array(rowWidth).fill(columnWidth);
+  const repeatDash = repeat.bind(null, '-');
+  border = border.map(repeatDash).join('+');
+  border = '+' + border + '+';
+  return border;
 }
 
 const createWorld = function (world) {
- let width = calculateWidth(world);
- let border = createBorder(width.row, width.column);
- let justify = justifier.bind(null, width.column);
- let board = world.map( list => joinByPipe( list.map(justify) ) );
+  let width = calculateWidth(world);
+  let border = createBorder(width.row, width.column);
+  let justify = justifier.bind(null, width.column);
+  let board = world.map( list => joinByPipe( list.map(justify) ) );
  return createGrid(board, border);
 }
 
