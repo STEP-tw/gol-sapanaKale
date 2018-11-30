@@ -15,6 +15,14 @@ describe('nextGeneration',() => {
     assert.deepEqual(actualNextGen,[]);
   });
 
+  it('should generate an empty generation for a current generation that contains multiple live cells',() => {
+    let currentGeneration = [[0,0], [0,1], [1,0], [2,2], [2,3], [3,3] ];
+    let bounds = {topLeft: [0,0], bottomRight: [3,3]};
+    let expectedList = [[0,0], [0,1], [1,0], [1,2], [2,2], [2,3], [3,2], [3,3]];
+    let actualNextGen = nextGeneration(currentGeneration,bounds);
+    assert.deepEqual(actualNextGen,expectedList);
+  });
+
   it('should generate a vertical blinker as the next step of a horizontal blinker',() => {
     let currentGeneration = [[0,1],[1,1],[2,1]];
     let expectedNextGen = [[1,0],[1,1],[1,2]]

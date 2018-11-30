@@ -18,8 +18,6 @@ const generateNthGeneration = function(parameters) {
   let { bounds, currGeneration, N } = parameters;
   let aliveCells = nthGeneration(bounds, currGeneration, N);
   let world = createBoard( bounds );
-  console.log(world);
-  console.log(aliveCells);
   world = updateWorld(world, aliveCells);
   return createWorld(world);
 }
