@@ -74,8 +74,8 @@ const isAlive = function ( liveCells, bound, cell ) {
   let liveCellsString = liveCells.map( x => x.toString() );
   let aliveNeighbours = intersection( neighbours, liveCellsString );
   let willRemainAlive = aliveNeighbours.length == 2 && liveCellsString.includes(cell);
-  let willAlive = aliveNeighbours.length == 3;
-  return willRemainAlive || willAlive;
+  let willComeAlive = aliveNeighbours.length == 3;
+  return willRemainAlive || willComeAlive;
 }
 
 const extractParameters = function(details) {
