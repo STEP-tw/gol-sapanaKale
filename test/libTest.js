@@ -1,5 +1,5 @@
 const assert = require ("assert");
-const { createWorld,
+const { createWorldGrid,
   extractParameters,
   extractBounds,
   extractGeneration,
@@ -143,21 +143,21 @@ describe('createBorder', function() {
   });
 })
 
-describe('createWorld', function() {
+describe('createWorldGrid', function() {
   it('should return the grid form of provided world ', function() {
     let expectedOutput = '+---+---+\n';
     expectedOutput  +=   '|   |   |\n';
     expectedOutput  +=   '+---+---+\n';
     expectedOutput  +=   '| @ |   |\n';
     expectedOutput  +=   '+---+---+';
-    assert.deepEqual(createWorld([[' ', ' '], ['@', ' ']]),expectedOutput);
+    assert.deepEqual(createWorldGrid([[' ', ' '], ['@', ' ']]),expectedOutput);
 
     expectedOutput =  '+---+---+---+\n';
     expectedOutput += '|   |   | @ |\n';
     expectedOutput += '+---+---+---+\n';
     expectedOutput += '| @ |   |   |\n';
     expectedOutput += '+---+---+---+';
-    assert.deepEqual(createWorld([[' ', ' ', '@'], ['@', ' ', ' ']]),expectedOutput);
+    assert.deepEqual(createWorldGrid([[' ', ' ', '@'], ['@', ' ', ' ']]),expectedOutput);
   });
 })
 

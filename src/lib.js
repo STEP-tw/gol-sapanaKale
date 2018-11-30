@@ -121,7 +121,7 @@ const createBorder = function(rowWidth, columnWidth) {
   return border;
 }
 
-const createWorld = function (world) {
+const createWorldGrid = function (world) {
   let width = calculateWidth(world);
   let border = createBorder(width.row, width.column);
   let justify = justifier.bind(null, width.column);
@@ -142,6 +142,6 @@ module.exports = {createBoard,
                   extractBounds,
                   calculateWidth,
                   createGrid,
-                  createWorld,
+                  createWorldGrid,
                   isBoundsInvalid, 
                   createBorder };
