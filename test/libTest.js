@@ -12,6 +12,7 @@ const { createWorld,
   extractNeighbours,
   isAlive,
   calculateWidth,
+  isBoundsInvalid,
   createGrid,
   createBorder } = require ("../src/lib.js");
 
@@ -157,5 +158,17 @@ describe('createWorld', function() {
     expectedOutput += '| @ |   |   |\n';
     expectedOutput += '+---+---+---+';
     assert.deepEqual(createWorld([[' ', ' ', '@'], ['@', ' ', ' ']]),expectedOutput);
+  });
+})
+
+describe('isBoundsInvalid', function() {
+  it('should return true if the given bounds are invalid', function() {
+    let bounds = {topLeft: [0,0], bottomRight: [-3,3]};     
+    assert.deepEqual(isBoundsInvalid( bounds ), true );
+  });
+
+  it('should return false if the given bounds are valid', function() {
+    let bounds = {topLeft: [0,0], bottomRight: [3,3]};     
+    assert.deepEqual(isBoundsInvalid( bounds ), false );
   });
 })

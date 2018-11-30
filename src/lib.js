@@ -12,6 +12,12 @@ const { repeat,
         cartesionProduct,
         isIncludes } = require("./util.js");
 
+const isBoundsInvalid = function( bounds ) {
+  let isXInvalid = bounds.topLeft[0] > bounds.bottomRight[0];
+  let isYInvalid = bounds.topLeft[1] > bounds.bottomRight[1];
+  return isXInvalid || isYInvalid;
+}
+
 const createBoard = function( bound ) {
   let x = bound.topLeft[0], xPrime = bound.bottomRight[0];
   let y = bound.topLeft[1], yPrime = bound.bottomRight[1];
@@ -137,4 +143,5 @@ module.exports = {createBoard,
                   calculateWidth,
                   createGrid,
                   createWorld,
+                  isBoundsInvalid, 
                   createBorder };
